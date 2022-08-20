@@ -16,20 +16,11 @@ To get a local copy up and running follow these simple example steps.
 Any kind of browser. 
 
 ### Setup:
-    1. Clone the repository (git clone https://github.com/looh16/math_magicians)
+    1. Clone the repository
     2. Then open the folder in your local environment 
     3. In terminal console run:
        - npm install
        - npm start
-
-# Live Demo:
-
-### Heroku 
-https://magicians-math-app.herokuapp.com/
-
-### Netlify
-https://magicians-math-app.netlify.app/
-
 
 ## 👤 **Author**
 
