@@ -1,0 +1,20 @@
+.header {
+  display: flex;
+}
+
+.header div {
+  margin-left: 2rem;
+}
+
+.navBar {
+  display: flex;
+}
+
+.menu {
+  display: inline-flex;
+  list-style-type: none;
+}
+
+.menu li {
+  padding: 10px;
+}
