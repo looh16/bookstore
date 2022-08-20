@@ -1,7 +1,8 @@
 import React from 'react';
+import categoriestyles from '../css/Categories.module.css';
 
 const Categories = () => (
-  <section>
+  <section className={categoriestyles.container}>
     <div>
       <p>
         Categories

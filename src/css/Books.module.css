@@ -1,0 +1,12 @@
+.bookList {
+  margin-top: 2rem;
+  margin-left: 2.3rem;
+}
+
+.details {
+  padding: 1rem;
+}
+
+.details li {
+  list-style-type: none;
+}

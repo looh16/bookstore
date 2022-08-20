@@ -1,5 +1,6 @@
 import React from 'react';
-import Form from './form';
+import BookForm from './form';
+import bookstyles from '../css/Books.module.css';
 
 const Books = () => {
   const books = [
@@ -18,16 +19,16 @@ const Books = () => {
   ];
 
   return (
-    <section>
+    <section className={bookstyles.bookList}>
       <div>
         {books.map((book) => (
-          <div key={book.id}>
+          <div key={book.id} className={bookstyles.details}>
             <li>{book.action}</li>
             <li>{book.title}</li>
             <li>{book.actor}</li>
           </div>
         ))}
-        <Form />
+        <BookForm />
       </div>
     </section>
 
