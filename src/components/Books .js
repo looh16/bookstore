@@ -1,34 +1,22 @@
-import React from 'react';
-import BookForm from './form';
+import { useSelector } from 'react-redux';
+import { selectAllBooks } from '../redux/books/books';
+import Categories from './Categories';
 import bookstyles from '../css/Books.module.css';
 
 const Books = () => {
-  const books = [
-    {
-      id: 1,
-      title: 'Javascript',
-      action: 'Programming Language',
-      actor: 'Jhon David',
-    },
-    {
-      id: 2,
-      title: 'Html',
-      action: 'Programming Language',
-      actor: 'Maria Nick',
-    },
-  ];
+  const books = useSelector(selectAllBooks);
 
   return (
     <section className={bookstyles.bookList}>
       <div>
         {books.map((book) => (
           <div key={book.id} className={bookstyles.details}>
-            <li>{book.action}</li>
-            <li>{book.title}</li>
-            <li>{book.actor}</li>
+            <p>{book.title}</p>
+            <p>
+              <Categories categoryId={book.categoryId} />
+            </p>
           </div>
         ))}
-        <BookForm />
       </div>
     </section>
 
