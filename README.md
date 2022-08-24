@@ -24,7 +24,7 @@ Any kind of browser.
 
 ## 👤 **Author**
 
-- GitHub: https://github.com/looh16/Hello-Microverse
+- GitHub: https://github.com/looh16
 - Twitter: https://twitter.com/custodiolanga1
 - LinkedIn: https://www.linkedin.com/in/custodio-serafim-2a318a23a
 

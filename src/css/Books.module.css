@@ -3,10 +3,29 @@
   margin-left: 2.3rem;
 }
 
-.details {
-  padding: 1rem;
+article {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em 0.5em 0.5em 0;
+  border: 1px solid rgb(161, 159, 159);
+  border-radius: 10px;
+  padding: 1em;
+  background-color: #fff;
 }
 
-.details li {
+.menuButtons {
+  display: inline-flex;
+  padding-left: 0;
+}
+
+.menuButtons li {
   list-style-type: none;
+  padding: 5px;
+  border-right: 1px solid black;
+  line-height: 9px;
+}
+
+.deleteButton {
+  background-color: white;
+  border: none;
 }
