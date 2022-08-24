@@ -7,9 +7,10 @@ article {
   display: flex;
   flex-direction: column;
   margin: 0.5em 0.5em 0.5em 0;
-  border: 1px solid rgb(172, 24, 24);
+  border: 1px solid rgb(161, 159, 159);
   border-radius: 10px;
   padding: 1em;
+  background-color: #fff;
 }
 
 .menuButtons {
