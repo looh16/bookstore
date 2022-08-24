@@ -20,10 +20,10 @@ const AddBook = () => {
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onCategoryChanged = (e) => setCategoryId(e.target.value);
 
-  const onSavePostClicked = () => {
+  const saveBook = () => {
     if (title) {
       dispatch(
-        bookAdded(title, categoryId),
+        bookAdded(title, Number(categoryId)),
       );
       setTitle('');
       setCategoryId('');
@@ -51,7 +51,7 @@ const AddBook = () => {
             </Col>
 
             <Col lg={3} md={6} sm={12} xs={12}>
-              <Form.Control as="select" custom onChange={onCategoryChanged}>
+              <Form.Control as="select" custom value={categoryId} onChange={onCategoryChanged}>
                 {categoriesOptions}
               </Form.Control>
             </Col>
@@ -59,7 +59,7 @@ const AddBook = () => {
             <Col lg={3} md={6} sm={12} xs={12}>
               <Button
                 type="submit"
-                onClick={onSavePostClicked}
+                onClick={saveBook}
                 disabled={!canSave}
               >
                 Add Book
