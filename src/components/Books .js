@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllBooks, bookRemoved } from '../redux/books/books';
 import BookCategory from './BookCategory';
-import bookstyles from '../css/Books.module.css';
+import bookStyles from '../css/Books.module.css';
 
 const Books = () => {
   const dispatch = useDispatch();
@@ -14,20 +14,20 @@ const Books = () => {
   };
 
   return (
-    <section className={bookstyles.bookList}>
-      <div>
-        {books.map((book) => (
-          <div key={book.id} className={bookstyles.details}>
-            <p>
-              <BookCategory categoryId={book.categoryId} />
-            </p>
-            <p>{book.title}</p>
-
-            <button type="button" onClick={() => deleteBook(book.id)}>Delete Row</button>
-
-          </div>
-        ))}
-      </div>
+    <section className={bookStyles.bookList}>
+      {books.map((book) => (
+        <article key={book.id} className={bookStyles.details}>
+          <p>
+            <BookCategory categoryId={book.categoryId} />
+          </p>
+          <p>{book.title}</p>
+          <ul className={bookStyles.menuButtons}>
+            <li>Comments</li>
+            <li><button className={bookStyles.deleteButton} type="button" onClick={() => deleteBook(book.id)}>Remove</button></li>
+            <li>Edit</li>
+          </ul>
+        </article>
+      ))}
     </section>
 
   );
