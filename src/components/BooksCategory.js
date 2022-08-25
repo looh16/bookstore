@@ -2,7 +2,8 @@
 import { useSelector } from 'react-redux';
 import { selectAllCategories } from '../redux/categories/categories';
 
-const BookCategory = ({ categoryId }) => {
+// Use Redux in React components.
+const BooksCategory = ({ categoryId }) => {
   const categories = useSelector(selectAllCategories);
 
   const category = categories.find((category) => category.id === categoryId);
@@ -10,4 +11,4 @@ const BookCategory = ({ categoryId }) => {
   return <span>{category ? category.name : 'Unknown author'}</span>;
 };
 
-export default BookCategory;
+export default BooksCategory;
