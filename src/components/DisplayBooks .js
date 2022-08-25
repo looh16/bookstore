@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllBooks, bookRemoved } from '../redux/books/books';
-import BookCategory from './BookCategory';
+import BookCategory from './BooksCategory';
 import bookStyles from '../css/Books.module.css';
 
-const Books = () => {
+// Use Redux in React components.
+const DisplayBooks = () => {
   const dispatch = useDispatch();
   const books = useSelector(selectAllBooks);
 
@@ -33,4 +34,4 @@ const Books = () => {
   );
 };
 
-export default Books;
+export default DisplayBooks;

@@ -4,12 +4,12 @@ import {
   Row, Col, Form, Button,
 } from 'react-bootstrap';
 import { bookAdded } from '../redux/books/books';
-// import Select from 'react-select';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import formStyles from '../css/Form.module.css';
 import { selectAllCategories } from '../redux/categories/categories';
 
-const AddBook = () => {
+// Use Redux in React components.
+const AddBookForm = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
@@ -73,4 +73,4 @@ const AddBook = () => {
   );
 };
 
-export default AddBook;
+export default AddBookForm;

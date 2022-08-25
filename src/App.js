@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Books from './components/Books ';
-import AddBook from './components/AddBook ';
+import DisplayBooks from './components/DisplayBooks ';
+import AddBookForm from './components/AddBookForm';
 import Navbar from './components/Navbar';
 import Categories from './components/Categories';
 
@@ -16,8 +16,8 @@ const App = () => (
           element={(
             <>
               <div>
-                <Books />
-                <AddBook />
+                <DisplayBooks />
+                <AddBookForm />
               </div>
             </>
         )}
