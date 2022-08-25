@@ -14,7 +14,11 @@ const initialState = {
     },
   ],
 };
-
+/**
+* Redux Toolkit's createReducer API uses Immer internally automatically. 
+* So, it's already safe to "mutate" state inside of any case reducer 
+* function that is passed to createReducer: https://redux-toolkit.js.org/usage/immer-reducers
+*/
 const books = createSlice({
   name: 'books',
   initialState,
