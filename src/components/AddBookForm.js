@@ -13,24 +13,27 @@ const AddBookForm = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
   const [categoryId, setCategoryId] = useState('');
 
   const categories = useSelector(selectAllCategories);
 
+  const onAuthorChanged = (e) => setAuthor(e.target.value);
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onCategoryChanged = (e) => setCategoryId(e.target.value);
 
   const saveBook = () => {
-    if (title) {
+    if (title && author) {
       dispatch(
-        bookAdded(title, Number(categoryId)),
+        bookAdded(author, title, Number(categoryId)),
       );
+      setAuthor('');
       setTitle('');
       setCategoryId('');
     }
   };
 
-  const canSave = Boolean(title);
+  const canSave = Boolean(title) && Boolean(author);
 
   const categoriesOptions = categories.map((category) => (
     <option key={category.id} value={category.id}>
@@ -46,6 +49,10 @@ const AddBookForm = () => {
       <Form>
         <Form.Group className="mb-3" controlId="bookTitle">
           <Row>
+            <Col lg={5} md={6} sm={12} xs={12}>
+              <Form.Control type="text" placeholder="Book Author" value={author} onChange={onAuthorChanged} />
+            </Col>
+
             <Col lg={5} md={6} sm={12} xs={12}>
               <Form.Control type="text" placeholder="Book Title" value={title} onChange={onTitleChanged} />
             </Col>

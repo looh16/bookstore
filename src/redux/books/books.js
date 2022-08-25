@@ -1,19 +1,19 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const BOOKS_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/5dZTjliP6fmELhxxqmFV/books';
 
 const initialState = {
-  books: [
-    {
-      id: 0,
-      title: 'The Hunger Games',
-      categoryId: 1,
-    },
-    {
-      id: 1,
-      title: 'Capital in the Twenty-First Century',
-      categoryId: 2,
-    },
-  ],
+  books: [],
+  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  error: null,
 };
+
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
+  const response = await axios.get(BOOKS_URL);
+  return response.data;
+});
+
 /**
 * Redux Toolkit's createReducer API uses Immer internally automatically.
 * So, it's already safe to "mutate" state inside of any case reducer
@@ -27,10 +27,11 @@ const books = createSlice({
       reducer(state, action) {
         state.books.push(action.payload);
       },
-      prepare(title, categoryId) {
+      prepare(author, title, categoryId) {
         return {
           payload: {
             id: nanoid(),
+            author,
             title,
             categoryId,
           },
@@ -47,9 +48,25 @@ const books = createSlice({
       },
     },
   },
+  extraReducers(builder) {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.books.push(action.payload);
+      })
+      .addCase(fetchBooks.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+      });
+  },
 });
 
 export const selectAllBooks = (state) => state.books.books;
+export const getBooksStatus = (state) => state.books.status;
+export const getBooksError = (state) => state.books.error;
 
 export const { bookAdded, bookRemoved } = books.actions;
 

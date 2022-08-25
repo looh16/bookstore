@@ -1,36 +1,44 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { selectAllBooks, bookRemoved } from '../redux/books/books';
+/* eslint-disable react/prop-types */
+import { useDispatch } from 'react-redux';
+import { bookRemoved } from '../redux/books/books';
 import BookCategory from './BooksCategory';
 import bookStyles from '../css/Books.module.css';
 
-// Use Redux in React components.
-const DisplayBooks = () => {
+const DisplayBooks = ({ book }) => {
   const dispatch = useDispatch();
-  const books = useSelector(selectAllBooks);
-
   const deleteBook = (id) => {
     dispatch(
       bookRemoved(id),
     );
   };
+  const entries = Object.entries(book);
+  const books = [];
+  /* eslint-disable no-plusplus */
+  for (let index = 0; index < entries.length; index++) {
+    const element = entries[index][1][0];
+    books.push(element);
+  }
 
   return (
-    <section className={bookStyles.bookList}>
+    <div>
       {books.map((book) => (
-        <article key={book.id} className={bookStyles.details}>
-          <p>
-            <BookCategory categoryId={book.categoryId} />
-          </p>
-          <p>{book.title}</p>
-          <ul className={bookStyles.menuButtons}>
-            <li>Comments</li>
-            <li><button className={bookStyles.deleteButton} type="button" onClick={() => deleteBook(book.id)}>Remove</button></li>
-            <li>Edit</li>
-          </ul>
-        </article>
+        <>
+          <article key={book.id} className={bookStyles.details}>
+            <p>
+              <BookCategory categoryName={book.category} />
+            </p>
+            <p>{book.title}</p>
+            <p>{book.author}</p>
+            <ul className={bookStyles.menuButtons}>
+              <li>Comments</li>
+              <li><button className={bookStyles.deleteButton} type="button" onClick={() => deleteBook(book.id)}>Remove</button></li>
+              <li>Edit</li>
+            </ul>
+          </article>
+        </>
       ))}
-    </section>
 
+    </div>
   );
 };
 
