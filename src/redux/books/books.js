@@ -15,8 +15,24 @@ export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
 });
 
 export const addNewBook = createAsyncThunk('books/addNewBook', async (initialPost) => {
-  const response = await axios.post(BOOKS_URL, initialPost);
+  const config = {
+    headers: {
+      'Content-type': 'application/json',
+    },
+  };
+  const response = await axios.post(BOOKS_URL, initialPost, config);
   return response.data;
+});
+
+export const deleteBook = createAsyncThunk('posts/deleteBook', async (initialPost) => {
+  const { id } = initialPost;
+  try {
+    const response = await axios.delete(`${BOOKS_URL}/${id}`);
+    if (response?.status === 200) return initialPost;
+    return `${response?.status}: ${response?.statusText}`;
+  } catch (err) {
+    return err.message;
+  }
 });
 
 /**
@@ -68,6 +84,16 @@ const books = createSlice({
       })
       .addCase(addNewBook.fulfilled, (state, action) => {
         state.books.push(action.payload);
+      })
+      .addCase(deleteBook.fulfilled, (state, action) => {
+        if (!action.payload?.id) {
+          console.log('Delete could not complete');
+          console.log(action.payload);
+          return;
+        }
+        const { id } = action.payload;
+        const books = state.books.filter((book) => book.id !== id);
+        state.books = books;
       });
   },
 });

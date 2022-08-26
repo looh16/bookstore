@@ -7,7 +7,6 @@ import {
 } from 'react-bootstrap';
 import { addNewBook } from '../redux/books/books';
 import { selectAllCategories } from '../redux/categories/categories';
-import BookClass from './BookClass';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import formStyles from '../css/Form.module.css';
 
@@ -34,16 +33,12 @@ const AddBookForm = () => {
       try {
         setAddRequestStatus('pending');
         const categoryObj = categories.find((obj) => obj.id === Number(categoryId));
-        const categoryName = categoryObj.name;
-        const bookId = nanoid();
-        const bookToSend = new BookClass(bookId, title, author, categoryName);
+        const category = categoryObj.name;
         /* eslint-disable camelcase */
-        const { item_id } = bookToSend;
-        const { category } = bookToSend;
+        const item_id = nanoid();
         dispatch(addNewBook({
           item_id, title, author, category,
         })).unwrap();
-        navigate('/');
         setAuthor('');
         setTitle('');
         navigate('/');
