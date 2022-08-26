@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { nanoid } from '@reduxjs/toolkit';
+import { useNavigate } from 'react-router-dom';
 import {
   Row, Col, Form, Button,
 } from 'react-bootstrap';
-import { bookAdded } from '../redux/books/books';
+import { addNewBook } from '../redux/books/books';
+import { selectAllCategories } from '../redux/categories/categories';
+import BookClass from './BookClass';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import formStyles from '../css/Form.module.css';
-import { selectAllCategories } from '../redux/categories/categories';
 
 // Use Redux in React components.
 const AddBookForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [categoryId, setCategoryId] = useState('');
+  const [addRequestStatus, setAddRequestStatus] = useState('idle');
 
   const categories = useSelector(selectAllCategories);
 
@@ -22,18 +27,33 @@ const AddBookForm = () => {
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onCategoryChanged = (e) => setCategoryId(e.target.value);
 
+  const canSave = [title, author].every(Boolean) && addRequestStatus === 'idle';
+
   const saveBook = () => {
-    if (title && author) {
-      dispatch(
-        bookAdded(author, title, Number(categoryId)),
-      );
-      setAuthor('');
-      setTitle('');
-      setCategoryId('');
+    if (canSave) {
+      try {
+        setAddRequestStatus('pending');
+        const categoryObj = categories.find((obj) => obj.id === Number(categoryId));
+        const categoryName = categoryObj.name;
+        const bookId = nanoid();
+        const bookToSend = new BookClass(bookId, title, author, categoryName);
+        /* eslint-disable camelcase */
+        const { item_id } = bookToSend;
+        const { category } = bookToSend;
+        dispatch(addNewBook({
+          item_id, title, author, category,
+        })).unwrap();
+        navigate('/');
+        setAuthor('');
+        setTitle('');
+        navigate('/');
+      } catch (err) {
+        console.error('Failed to save the post', err);
+      } finally {
+        setAddRequestStatus('idle');
+      }
     }
   };
-
-  const canSave = Boolean(title) && Boolean(author);
 
   const categoriesOptions = categories.map((category) => (
     <option key={category.id} value={category.id}>

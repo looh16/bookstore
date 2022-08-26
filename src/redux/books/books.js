@@ -1,7 +1,7 @@
 import { createSlice, nanoid, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const BOOKS_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/5dZTjliP6fmELhxxqmFV/books';
+const BOOKS_URL = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/DKO1PAzRVkRNSkTsFznH/books';
 
 const initialState = {
   books: [],
@@ -11,6 +11,11 @@ const initialState = {
 
 export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
   const response = await axios.get(BOOKS_URL);
+  return response.data;
+});
+
+export const addNewBook = createAsyncThunk('books/addNewBook', async (initialPost) => {
+  const response = await axios.post(BOOKS_URL, initialPost);
   return response.data;
 });
 
@@ -60,6 +65,9 @@ const books = createSlice({
       .addCase(fetchBooks.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+      })
+      .addCase(addNewBook.fulfilled, (state, action) => {
+        state.books.push(action.payload);
       });
   },
 });
