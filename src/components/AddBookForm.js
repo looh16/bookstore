@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import {
   Row, Col, Form, Button,
 } from 'react-bootstrap';
-import { addNewBook } from '../redux/books/books';
+import { addBook } from '../redux/books/books';
 import { selectAllCategories } from '../redux/categories/categories';
+// import BookClass from './BookClass';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import formStyles from '../css/Form.module.css';
 
@@ -18,7 +19,6 @@ const AddBookForm = () => {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [categoryId, setCategoryId] = useState('');
-  const [addRequestStatus, setAddRequestStatus] = useState('idle');
 
   const categories = useSelector(selectAllCategories);
 
@@ -26,26 +26,23 @@ const AddBookForm = () => {
   const onTitleChanged = (e) => setTitle(e.target.value);
   const onCategoryChanged = (e) => setCategoryId(e.target.value);
 
-  const canSave = [title, author].every(Boolean) && addRequestStatus === 'idle';
+  const canSave = [title, author].every(Boolean);
 
   const saveBook = () => {
     if (canSave) {
       try {
-        setAddRequestStatus('pending');
         const categoryObj = categories.find((obj) => obj.id === Number(categoryId));
         const category = categoryObj.name;
         /* eslint-disable camelcase */
         const item_id = nanoid();
-        dispatch(addNewBook({
+        dispatch(addBook(
           item_id, title, author, category,
-        })).unwrap();
+        )).unwrap();
         setAuthor('');
         setTitle('');
         navigate('/');
       } catch (err) {
         console.error('Failed to save the post', err);
-      } finally {
-        setAddRequestStatus('idle');
       }
     }
   };

@@ -1,30 +1,18 @@
-import { useSelector } from 'react-redux';
-// import { useEffect } from 'react';
-import {
-  selectAllBooks, getBooksError, getBooksStatus,
-} from '../redux/books/books';
+/* eslint-disable react/prop-types */
+import React from 'react';
 import DisplayBooks from './DisplayBooks ';
-import bookStyles from '../css/Books.module.css';
 
-const Books = () => {
-  const books = useSelector(selectAllBooks);
-  const bookStatus = useSelector(getBooksStatus);
-  const error = useSelector(getBooksError);
-
-  let content;
-  if (bookStatus === 'loading') {
-    content = <p>Loading...</p>;
-  } else if (bookStatus === 'succeeded') {
-    content = books.map((book) => <DisplayBooks key={book.id} book={book} />);
-  } else if (bookStatus === 'failed') {
-    content = <p>{error}</p>;
-  }
+const Books = ({ books }) => {
+  const bookList = Object.entries(books);
 
   return (
-    <section className={bookStyles.bookList}>
-      {content}
-    </section>
-
+    <>
+      <ul>
+        {bookList.map((book) => (
+          <DisplayBooks key={book[0]} book={book} />
+        ))}
+      </ul>
+    </>
   );
 };
 
