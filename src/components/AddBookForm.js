@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
-import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 import {
   Row, Col, Form, Button,
 } from 'react-bootstrap';
 import { addBook } from '../redux/books/books';
 import { selectAllCategories } from '../redux/categories/categories';
-// import BookClass from './BookClass';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import formStyles from '../css/Form.module.css';
 
-// Use Redux in React components.
 const AddBookForm = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -28,22 +25,17 @@ const AddBookForm = () => {
 
   const canSave = [title, author].every(Boolean);
 
-  const saveBook = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (canSave) {
-      try {
-        const categoryObj = categories.find((obj) => obj.id === Number(categoryId));
-        const category = categoryObj.name;
-        /* eslint-disable camelcase */
-        const item_id = nanoid();
-        dispatch(addBook(
-          item_id, title, author, category,
-        )).unwrap();
-        setAuthor('');
-        setTitle('');
-        navigate('/');
-      } catch (err) {
-        console.error('Failed to save the post', err);
-      }
+      const categoryObj = categories.find((obj) => obj.id === Number(categoryId));
+      const category = categoryObj.name;
+      /* eslint-disable camelcase */
+      const item_id = nanoid();
+      dispatch(addBook(item_id, title, author, category));
+      swal('Done!', `${title} successfully added`, 'success');
+      setAuthor('');
+      setTitle('');
     }
   };
 
@@ -58,7 +50,7 @@ const AddBookForm = () => {
       <p>
         ADD NEW BOOK
       </p>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="bookTitle">
           <Row>
             <Col lg={5} md={6} sm={12} xs={12}>
@@ -78,7 +70,6 @@ const AddBookForm = () => {
             <Col lg={3} md={6} sm={12} xs={12}>
               <Button
                 type="submit"
-                onClick={saveBook}
                 disabled={!canSave}
               >
                 Add Book

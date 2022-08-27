@@ -1,13 +1,14 @@
-import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
-import bookReducer from './books/books';
 import categoryReducer from './categories/categories';
+import bookReducer from './books/books';
 
-/* eslint-disable import/prefer-default-export */
-const reducer = {
+const rootReducer = combineReducers({
   books: bookReducer,
   categories: categoryReducer,
-};
+});
 
-const store = configureStore({ reducer }, applyMiddleware(thunk));
-export default store;
+export default configureStore({
+  reducer: rootReducer,
+  middleware: [thunk],
+});
