@@ -1,56 +1,49 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import BookService from '../../services/BooksService';
 
-const initialState = {
-  books: [
-    {
-      id: 0,
-      title: 'The Hunger Games',
-      categoryId: 1,
-    },
-    {
-      id: 1,
-      title: 'Capital in the Twenty-First Century',
-      categoryId: 2,
-    },
-  ],
-};
-/**
-* Redux Toolkit's createReducer API uses Immer internally automatically.
-* So, it's already safe to "mutate" state inside of any case reducer
-* function that is passed to createReducer: https://redux-toolkit.js.org/usage/immer-reducers
-*/
-const books = createSlice({
-  name: 'books',
-  initialState,
-  reducers: {
-    bookAdded: {
-      reducer(state, action) {
-        state.books.push(action.payload);
-      },
-      prepare(title, categoryId) {
-        return {
-          payload: {
-            id: nanoid(),
-            title,
-            categoryId,
-          },
-        };
-      },
-    },
-    bookRemoved: {
+const GET_ALL_BOOKS = 'books/GET_ALL_BOOKS';
+const ADD_BOOK = 'books/ADD_BOOK';
+const REMOVE_BOOK = 'books/REMOVE_BOOK';
 
-      reducer(state, action) {
-        const bookId = action.payload;
-        const books = state.books.filter((book) => book.id !== bookId);
-        /* eslint-disable no-param-reassign */
-        state.books = books;
-      },
-    },
+const books = [];
+
+export const getAllBooks = createAsyncThunk(
+  GET_ALL_BOOKS,
+  async () => {
+    const { data } = await BookService.getAllBooks();
+    return { books: Object.entries(data) };
   },
-});
+);
 
-export const selectAllBooks = (state) => state.books.books;
+// eslint-disable-next-line camelcase
+export const addBook = (item_id, title, author, category) => async (dispatch) => {
+  await BookService.addBook({
+    // eslint-disable-next-line camelcase
+    item_id, title, author, category,
+  }).then(() => dispatch(getAllBooks()));
+};
 
-export const { bookAdded, bookRemoved } = books.actions;
+export const removeBook = (id) => async (dispatch) => {
+  await BookService.removeBook(id);
+  dispatch({
+    type: REMOVE_BOOK,
+    payload: { id },
+  });
+};
 
-export default books.reducer;
+const reducer = (state = books, action) => {
+  const { type, payload } = action;
+  switch (type) {
+    case `${GET_ALL_BOOKS}/fulfilled`:
+      return payload.books;
+    case `${ADD_BOOK}/fulfilled`:
+      return { ...state, ...payload };
+    case REMOVE_BOOK:
+      // eslint-disable-next-line max-len
+      return Object.fromEntries(Object.entries(state).filter((book) => book[1][0] !== payload.id));
+    default:
+      return state;
+  }
+};
+
+export default reducer;

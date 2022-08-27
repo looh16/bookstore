@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import DisplayBooks from './components/DisplayBooks ';
-import AddBookForm from './components/AddBookForm';
+import Home from './components/Home';
 import Navbar from './components/Navbar';
 import Categories from './components/Categories';
 
@@ -13,14 +12,9 @@ const App = () => (
         <Route
           exact
           path="/"
-          element={(
-            <>
-              <div>
-                <DisplayBooks />
-                <AddBookForm />
-              </div>
-            </>
-        )}
+          element={
+            <Home />
+          }
         />
         <Route path="categories" element={<Categories />} />
       </Routes>
