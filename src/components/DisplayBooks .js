@@ -17,8 +17,7 @@ const DisplayBooks = ({ book }) => {
   };
 
   return (
-
-    <article key={book[0]} className={bookStyles.details}>
+    <div key={book[0]} className={bookStyles.details}>
       <p>
         <BookCategory categoryName={book[1][0].category} />
       </p>
@@ -29,7 +28,7 @@ const DisplayBooks = ({ book }) => {
         <li><button className={bookStyles.deleteButton} type="button" onClick={() => deleteBookFromAPI(book[0])}>Remove</button></li>
         <li>Edit</li>
       </ul>
-    </article>
+    </div>
   );
 };
 

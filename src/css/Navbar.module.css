@@ -1,13 +1,12 @@
 .header {
   display: flex;
-}
-
-.header div {
-  margin-left: 2rem;
-}
-
-.navBar {
-  display: flex;
+  justify-content: space-between;
+  padding: 24px 4%;
+  background-color: #fff;
+  border-bottom: 1px solid #e8e8e8;
+  align-items: center;
+  grid-gap: 40px;
+  gap: 40px;
 }
 
 .menu {
@@ -17,4 +16,20 @@
 
 .menu li {
   padding: 10px;
+}
+
+.userIcon {
+  align-self: flex-end;
+}
+
+.user {
+  position: absolute;
+  border: 1px gray solid;
+  border-radius: 50%;
+  color: rgb(42, 126, 165);
+  height: 3rem;
+  width: 3rem;
+  background-color: white;
+  right: 5%;
+  top: 1%;
 }
