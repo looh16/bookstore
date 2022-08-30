@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
 .header {
   display: flex;
   padding: 24px 4%;
@@ -8,13 +11,42 @@
   gap: 40px;
 }
 
+.header h1 {
+  width: 15rem;
+  height: 2.313rem;
+  font-family: "Roboto Slab", serif;
+  font-size: 1.875rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #0290ff;
+}
+
+.navBar {
+  margin-top: 0.5rem;
+}
+
 .menu {
   display: inline-flex;
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+  color: #121212;
+}
+
 .menu li {
   padding: 10px;
+  font-family: "Roboto Slab", serif;
+  font-size: 0.813rem;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: 1.9px;
 }
 
 .userIcon {

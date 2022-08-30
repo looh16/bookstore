@@ -47,28 +47,29 @@ const AddBookForm = () => {
 
   return (
     <div className={formStyles.book}>
-      <p>
+      <p className={formStyles.addNew}>
         ADD NEW BOOK
       </p>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="bookTitle">
           <Row>
-            <Col lg={5} md={6} sm={12} xs={12}>
-              <Form.Control type="text" placeholder="Book Author" value={author} onChange={onAuthorChanged} />
+            <Col>
+              <Form.Control className={formStyles.input} type="text" placeholder="Book Author" value={author} onChange={onAuthorChanged} />
             </Col>
 
-            <Col lg={5} md={6} sm={12} xs={12}>
-              <Form.Control type="text" placeholder="Book Title" value={title} onChange={onTitleChanged} />
+            <Col>
+              <Form.Control className={formStyles.input} type="text" placeholder="Book Title" value={title} onChange={onTitleChanged} />
             </Col>
 
-            <Col lg={4} md={6} sm={12} xs={12}>
-              <Form.Control as="select" custom value={categoryId} onChange={onCategoryChanged}>
+            <Col>
+              <Form.Control className={formStyles.input} as="select" custom value={categoryId} onChange={onCategoryChanged}>
                 {categoriesOptions}
               </Form.Control>
             </Col>
 
-            <Col lg={3} md={6} sm={12} xs={12}>
+            <Col>
               <Button
+                className={formStyles.btnAdd}
                 type="submit"
                 disabled={!canSave}
               >

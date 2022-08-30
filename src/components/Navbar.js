@@ -7,12 +7,12 @@ const Navbar = () => {
     {
       id: 1,
       path: '/',
-      text: 'Home',
+      text: 'BOOKS',
     },
     {
       id: 2,
       path: '/categories',
-      text: 'Categories',
+      text: 'CATEGORIES',
     },
   ];
 
