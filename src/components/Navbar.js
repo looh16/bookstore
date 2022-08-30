@@ -33,7 +33,7 @@ const Navbar = () => {
         </ul>
       </nav>
       <div className={navStyles.userIcon}>
-        <FaUserCircle className="user" style={{ color: '#0290ff', fontSize: '16px' }} />
+        <FaUserCircle className={navStyles.user} />
       </div>
     </section>
   );
