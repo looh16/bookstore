@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
 .bookList {
   display: flex;
   flex-direction: column;
@@ -22,10 +25,44 @@
   border-radius: 4px;
 }
 
+.categoryName {
+  font-weight: 700;
+  color: #121212;
+}
+
+.title {
+  font-family: "Roboto Slab", serif;
+  height: 1.813rem;
+  font-size: 1.375rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  color: #121212;
+}
+
+.author {
+  height: 1.188rem;
+  font-family: "Roboto Slab", serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4386bf;
+}
+
 .bookUpdateDetails {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-left: 30rem;
+}
+
+.percentage {
+  margin-left: 1rem;
+  margin-top: 1rem;
 }
 
 .lineOne {
@@ -42,6 +79,16 @@
   border: solid 1px #e8e8e8;
 }
 
+.chapter {
+  margin-left: 1rem;
+}
+
+.currentChapter {
+  color: #919191;
+  font-family: "Roboto Slab", serif;
+  font-weight: 300;
+}
+
 .menuButtons {
   display: inline-flex;
   padding-left: 0;
@@ -52,9 +99,17 @@
   padding: 5px;
   border-right: 1px solid black;
   line-height: 9px;
+  font-family: "Roboto Slab", serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #4386bf;
 }
 
 .deleteButton {
   background-color: white;
   border: none;
+  color: #4386bf;
 }

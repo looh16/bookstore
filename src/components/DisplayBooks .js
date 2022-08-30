@@ -24,11 +24,11 @@ const DisplayBooks = ({ book }) => {
     <div className={bookStyles.detailsMain}>
       <div key={book[0]} className={bookStyles.details}>
         <div>
-          <p>
+          <p className={bookStyles.categoryName}>
             <BookCategory categoryName={book[1][0].category} />
           </p>
-          <p>{book[1][0].title}</p>
-          <p>{book[1][0].author}</p>
+          <p className={bookStyles.title}>{book[1][0].title}</p>
+          <p className={bookStyles.author}>{book[1][0].author}</p>
           <ul key={book[0]} className={bookStyles.menuButtons}>
             <li>Comments</li>
             <li><button className={bookStyles.deleteButton} type="button" onClick={() => deleteBookFromAPI(book[0])}>Remove</button></li>
@@ -43,17 +43,17 @@ const DisplayBooks = ({ book }) => {
             className="col bg-white"
           />
         </div>
-        <div>
+        <div className={bookStyles.percentage}>
           <h1 className="col bg-white percentage">
             {progress}
             %
 
           </h1>
-          <p className="col bg-white fw-lighter fs-5 text-muted completed">Completed</p>
+          <p className={bookStyles.currentChapter}>Completed</p>
         </div>
         <div className={bookStyles.lineTwo} />
-        <div className="col-3 bg-white">
-          <p className="bg-white current-chapter">CURRENT CHAPTER</p>
+        <div className={bookStyles.chapter}>
+          <p className={bookStyles.currentChapter}>CURRENT CHAPTER</p>
           <p className="bg-white chapter">
             Chapter
             {' '}
