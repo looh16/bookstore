@@ -1,31 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
 .bookList {
-  margin-top: 2rem;
-  margin-left: 2.3rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0;
 }
 
-article {
+.detailsMain {
   display: flex;
-  flex-direction: column;
-  margin: 0.5em 0.5em 0.5em 0;
-  border: 1px solid rgb(161, 159, 159);
-  border-radius: 10px;
-  padding: 1em;
+  margin-top: 1rem;
   background-color: #fff;
+  border: 1px solid #e8e8e8;
+  padding: 2rem;
+  margin-right: 2rem;
+}
+
+.details {
+  display: flex;
+  margin-bottom: 0.1rem;
+  border-radius: 4px;
+}
+
+.categoryName {
+  font-weight: 700;
+  color: #121212;
+}
+
+.title {
+  font-family: "Roboto Slab", serif;
+  height: 1.813rem;
+  font-size: 1.375rem;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  color: #121212;
+}
+
+.author {
+  font-family: "Roboto Slab", serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #4386bf;
+}
+
+.bookUpdateDetails {
+  display: flex;
+  margin-left: 30rem;
+}
+
+.percentage {
+  margin-left: 1rem;
+  margin-top: 1rem;
+}
+
+.lineOne {
+  width: 75rem;
+  height: 0.125rem;
+  margin: 2.5rem 0.063rem 0.1rem 9.2rem;
+  border: solid 1px #e8e8e8;
+}
+
+.lineTwo {
+  width: 0.125rem;
+  height: 4.375rem;
+  margin: 1.125rem 3.688rem 0 4.938rem;
+  border: solid 1px #e8e8e8;
+}
+
+.chapter {
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+}
+
+.currentChapter {
+  color: #919191;
+  font-family: "Roboto Slab", serif;
+  font-weight: 300;
 }
 
 .menuButtons {
   display: inline-flex;
-  padding-left: 0;
+  padding: 0;
 }
 
 .menuButtons li {
   list-style-type: none;
-  padding: 5px;
   border-right: 1px solid black;
   line-height: 9px;
+  font-family: "Roboto Slab", serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  font-stretch: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  color: #4386bf;
+  padding: 3px;
+  margin: 0;
 }
 
 .deleteButton {
   background-color: white;
   border: none;
+  color: #4386bf;
 }

@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa';
 import navStyles from '../css/Navbar.module.css';
 
 const Navbar = () => {
@@ -6,19 +7,19 @@ const Navbar = () => {
     {
       id: 1,
       path: '/',
-      text: 'Home',
+      text: 'BOOKS',
     },
     {
       id: 2,
       path: '/categories',
-      text: 'Categories',
+      text: 'CATEGORIES',
     },
   ];
 
   return (
     <section className={navStyles.header}>
       <div>
-        <h1>Book store CMS</h1>
+        <h1>Bookstore CMS</h1>
       </div>
       <nav className={navStyles.navBar}>
         <ul className={navStyles.menu}>
@@ -31,6 +32,9 @@ const Navbar = () => {
           ))}
         </ul>
       </nav>
+      <div className={navStyles.userIcon}>
+        <FaUserCircle className={navStyles.user} />
+      </div>
     </section>
   );
 };
