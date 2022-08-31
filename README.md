@@ -36,4 +36,4 @@ Give a ⭐️ if you like this project!
 
 ## 📝 License
 
-This project is [MIT](./MIT.md) licensed.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/looh16/bookstore/blob/34137715daf40f76ef083157c8c9c9e4d7aaaada/LICENSE)
