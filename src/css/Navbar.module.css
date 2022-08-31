@@ -9,10 +9,10 @@
   align-items: center;
   grid-gap: 40px;
   gap: 40px;
+  margin-left: 0;
 }
 
 .header h1 {
-  width: 15rem;
   height: 2.313rem;
   font-family: "Roboto Slab", serif;
   font-size: 1.875rem;
@@ -26,11 +26,13 @@
 
 .navBar {
   margin-top: 0.5rem;
+  margin-left: 0;
 }
 
 .menu {
   display: inline-flex;
   list-style-type: none;
+  margin-left: 0;
 }
 
 a {
@@ -47,6 +49,7 @@ a {
   font-style: normal;
   line-height: normal;
   letter-spacing: 1.9px;
+  margin-left: 0;
 }
 
 .userIcon {
@@ -63,4 +66,5 @@ a {
   background-color: white;
   right: 5%;
   top: 3.5%;
+  margin-left: 0;
 }

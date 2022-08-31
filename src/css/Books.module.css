@@ -3,24 +3,22 @@
 
 .bookList {
   display: flex;
+  justify-content: center;
   flex-direction: column;
-  background-color: #fafafa;
+  margin: 0;
 }
 
 .detailsMain {
   display: flex;
-  flex-direction: row;
-  margin-top: 3rem;
-  margin-right: 3rem;
-  margin-bottom: 0.1rem;
+  margin-top: 1rem;
   background-color: #fff;
-  border-radius: 4px;
   border: 1px solid #e8e8e8;
   padding: 2rem;
+  margin-right: 2rem;
 }
 
 .details {
-  margin-right: 3rem;
+  display: flex;
   margin-bottom: 0.1rem;
   border-radius: 4px;
 }
@@ -54,8 +52,6 @@
 
 .bookUpdateDetails {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   margin-left: 30rem;
 }
 
@@ -80,8 +76,8 @@
 
 .chapter {
   display: flex;
+  align-self: flex-end;
   flex-direction: column;
-  margin-left: 1rem;
 }
 
 .currentChapter {
@@ -92,12 +88,11 @@
 
 .menuButtons {
   display: inline-flex;
-  padding-left: 0;
+  padding: 0;
 }
 
 .menuButtons li {
   list-style-type: none;
-  padding: 5px;
   border-right: 1px solid black;
   line-height: 9px;
   font-family: "Roboto Slab", serif;
@@ -107,6 +102,8 @@
   font-style: normal;
   letter-spacing: normal;
   color: #4386bf;
+  padding: 3px;
+  margin: 0;
 }
 
 .deleteButton {

@@ -51,7 +51,7 @@ const AddBookForm = () => {
         </p>
       </div>
 
-      <div>
+      <div className={formStyles.formContainer}>
         <Form onSubmit={handleSubmit}>
 
           <Form.Group as={Col} xs={3} controlId="bookAuthorField" className={formStyles.input}>

@@ -1,11 +1,12 @@
 .container {
-  width: 100vw;
-  max-height: max-content;
-  border-radius: 4px;
-  box-shadow: 0 0 60px 0 rgba(0, 0, 0, 0.05);
-  background-color: #fafafa;
+  width: 100%;
+  border-radius: 4%;
+  margin: 0;
+  padding: 0;
 }
 
 .main {
   background-color: #f4f5f9;
+  margin: 0;
+  padding: 0;
 }
