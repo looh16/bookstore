@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { nanoid } from '@reduxjs/toolkit';
 import swal from 'sweetalert';
-import {
-  Row, Col, Form, Button,
-} from 'react-bootstrap';
+import { Col, Form, Button } from 'react-bootstrap';
 import { addBook } from '../redux/books/books';
 import { selectAllCategories } from '../redux/categories/categories';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -46,38 +44,54 @@ const AddBookForm = () => {
   ));
 
   return (
-    <div className={formStyles.book}>
-      <p>
-        ADD NEW BOOK
-      </p>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="bookTitle">
-          <Row>
-            <Col lg={5} md={6} sm={12} xs={12}>
-              <Form.Control type="text" placeholder="Book Author" value={author} onChange={onAuthorChanged} />
-            </Col>
+    <div className={formStyles.bookForm}>
+      <div>
+        <p className={formStyles.addNew}>
+          ADD NEW BOOK
+        </p>
+      </div>
 
-            <Col lg={5} md={6} sm={12} xs={12}>
-              <Form.Control type="text" placeholder="Book Title" value={title} onChange={onTitleChanged} />
-            </Col>
+      <div className={formStyles.formContainer}>
+        <Form onSubmit={handleSubmit}>
 
-            <Col lg={4} md={6} sm={12} xs={12}>
-              <Form.Control as="select" custom value={categoryId} onChange={onCategoryChanged}>
-                {categoriesOptions}
-              </Form.Control>
-            </Col>
+          <Form.Group as={Col} xs={3} controlId="bookAuthorField" className={formStyles.input}>
+            <Form.Control
+              type="text"
+              value={author}
+              name="bookAuthor"
+              placeholder="Book Author"
+              required
+              onChange={onAuthorChanged}
+            />
+          </Form.Group>
 
-            <Col lg={3} md={6} sm={12} xs={12}>
-              <Button
-                type="submit"
-                disabled={!canSave}
-              >
-                Add Book
-              </Button>
-            </Col>
-          </Row>
-        </Form.Group>
-      </Form>
+          <Form.Group as={Col} xs={3} controlId="bookTitleField" className={formStyles.input}>
+            <Form.Control
+              type="text"
+              value={title}
+              name="bookTitle"
+              placeholder="Book Title"
+              required
+              onChange={onTitleChanged}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col} xs={4} controlId="categorySelect" className={formStyles.input}>
+            <Form.Control as="select" name="categories" value={categoryId} onChange={onCategoryChanged}>
+
+              {categoriesOptions}
+            </Form.Control>
+          </Form.Group>
+
+          <Button
+            className={formStyles.btnAdd}
+            type="submit"
+            disabled={!canSave}
+          >
+            Add Book
+          </Button>
+        </Form>
+      </div>
     </div>
 
   );
